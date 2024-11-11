@@ -1,0 +1,46 @@
+import React, { useState, useEffect } from 'react';
+import './App.css'; // Import your CSS file
+
+const CountdownTimer = () => {
+  const [targetDate, setTargetDate] = useState('');
+  const [timeLeft, setTimeLeft] = useState({});
+
+  const handleChange = (event) => {
+    setTargetDate(event.target.value);
+  };
+
+  useEffect(() => {
+    if (!targetDate) return;
+
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft(targetDate));
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [targetDate]);
+
+  function calculateTimeLeft(date) {
+    const difference = new Date(date) - new Date();
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / (1000 * 60)) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
+    };
+  }
+
+  return (
+    <div className="countdown">
+      <h1>~~ Countdown Timer ~~</h1>
+      <div className="input-container">
+        <input type="datetime-local" onChange={handleChange} />
+      </div>
+      <p className="timer">
+        {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
+      </p>
+      <button className="button" onClick={() => setTargetDate('')}>Reset</button>
+    </div>
+  );
+};
+
+export default CountdownTimer;
