@@ -31,7 +31,7 @@ const CountdownTimer = () => {
 
   return (
     <div className="countdown">
-      <h1>~~ Countdown Timer ~~</h1>
+      <h2>~~ Countdown Timer ~~</h2>
       <div className="input-container">
         <input type="datetime-local" onChange={handleChange} />
       </div>
