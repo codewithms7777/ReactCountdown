@@ -40,10 +40,7 @@ const CountdownTimer = () => {
       </p>
       <button className="button" onClick={() => setTargetDate('')}>Reset</button>
     </div>
-    <div style="text-align: center; margin-top: 20px; font-size: 14px; color: black;">
-  &copy; 2024 All rights reserved to MS Corporation
-</div>
-
+ 
   );
 };
 
